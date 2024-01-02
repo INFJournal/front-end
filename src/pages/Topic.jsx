@@ -33,7 +33,7 @@ const TopicBox = styled.button`
 `;
 
 const TopicText = styled.div`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   margin-left: 29px;
   font-family: Pretendard;
@@ -77,16 +77,14 @@ const TodayTopicBox = styled.div`
 
 const TodayTopicTitle = styled.div`
   position: relative;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   margin: 38px 0 0 13px;
-  width: 74px;
-  height: 34px;
 `;
 const TodayTopicImg = styled.img`
   width: 49.691px;
   height: 58.83px;
-  margin: 6px 0 0 70px;
+  margin: 45px 0 0 70px;
 `;
 
 const TodayTopicName = styled.div`
