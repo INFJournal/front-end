@@ -36,7 +36,7 @@ const TopicText = styled.div`
 export default function Topic() {
     const navigate=useNavigate();
     const ClickButton =()=>{
-        navigate("/OpenEssay");
+        navigate("/openessay");
     }
 
   return (

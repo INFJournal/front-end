@@ -13,6 +13,7 @@ import EssayList from "./pages/EssayList/EssayList";
 import Topic from "./pages/Topic.jsx";
 import OpenEssay from "./pages/EssayPages/OpenEssay.jsx";
 import LookEssay from "./pages/EssayPages/LookEssay.jsx";
+import WriteEssay from "./pages/EssayPages/WriteEssay.jsx";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/topic" element={<Topic />} />
           <Route path="/openessay" element={<OpenEssay />} />
           <Route path="/lookessay" element={<LookEssay />} />
+          <Route path="/writeessay" element={<WriteEssay />} />
         </Routes>
       </BrowserRouter>
     </>
