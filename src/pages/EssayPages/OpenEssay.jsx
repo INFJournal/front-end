@@ -31,7 +31,7 @@ export default function OpenEssay() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/LookEssay");
+    navigate("/lookessay");
   };
 
   return (
