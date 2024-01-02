@@ -185,7 +185,7 @@ export default function LookEssay() {
     axios
       .get(apiEndpoint, {
         headers: {
-          Authorization: 4,
+          Authorization: userId,
         },
       })
       .then((response) => {
@@ -229,6 +229,7 @@ export default function LookEssay() {
   const handleClose = () => {
     navigate("/essayrandmolist", { state: { data } });
   };
+
   return (
     <Main>
       <MainBackHeader />
