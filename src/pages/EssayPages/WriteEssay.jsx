@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import MainBackHeader from "../../components/HeaderList/MainBackHeader";
 
 const Main = styled.div`
   position: relative;
+  font-family: Pretendard;
 `;
 const TodayTopic = styled.div`
   display: flex;
@@ -13,17 +15,17 @@ const TodayTopic = styled.div`
   border: 3px solid #d5e4d8;
   width: 305px;
   height: 78px;
-  margin: 111px 0 0 42px;
+  margin: 52px 0 0 42px;
 `;
 
 const TodayTopicTitle = styled.div`
   font-weight: 700;
-  font-size: 14px;
+  font-size: 14px;  
 `;
 
 const OverlappingBox = styled.div`
   position: absolute;
-  top: -10px;
+  top: 165px;
   width: 78px;
   height: 22px;
   border-radius: 10px;
@@ -36,7 +38,7 @@ const OverlappingText = styled.div`
   justify-content: center;
   font-size: 12px;
   font-weight: 700;
-  padding: 2px 0 0 0;
+  padding: 3.5px 0 0 0;
 `;
 
 const TopicTextBox = styled.div`
@@ -95,7 +97,7 @@ const SaveBtn = styled.button`
 const ShowAv = styled.div`
   position: relative;
   display: flex;
-  margin: 15px 0 0 271px;
+  margin: 10px 0 0 281px;
   color: #000;
   font-family: Pretendard;
   font-size: 10px;
@@ -113,7 +115,7 @@ const ShowBtn = styled.div`
 const ShowCircleBefore = styled.div`
   position: absolute;
   top: 1px;
-  left: 68px;
+  left: 47px;
   width: 14px;
   height: 14px;
   background-color: #a0b2a4;
@@ -123,7 +125,7 @@ const ShowCircleBefore = styled.div`
 const ShowCircleAfter = styled.div`
   position: absolute;
   top: 1px;
-  left: 54px;
+  left: 62px;
   width: 14px;
   height: 14px;
   background-color: #3e864d;
@@ -148,6 +150,7 @@ export default function WriteEssay() {
   };
   return (
     <Main>
+    <MainBackHeader/>
       <TodayTopic>
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>

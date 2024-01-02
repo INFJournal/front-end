@@ -4,10 +4,11 @@ import Heart from "../../img/Heart.png";
 import UnScrapImg from "../../img/UnScrap.png";
 import ScrapImg from "../../img/Scrap.png";
 import { useNavigate } from "react-router-dom";
-
+import MainBackHeader from "../../components/HeaderList/MainBackHeader";
 const Main = styled.div`
-  position : relative;
-`
+  position: relative;
+  font-family: Pretendard;
+`;
 const TodayTopic = styled.div`
   display: flex;
   align-items: center;
@@ -16,7 +17,7 @@ const TodayTopic = styled.div`
   border: 3px solid #d5e4d8;
   width: 305px;
   height: 78px;
-  margin: 111px 0 0 42px;
+  margin: 52px 0 0 42px;
 `;
 
 const BorderLine = styled.div`
@@ -25,7 +26,6 @@ const BorderLine = styled.div`
   width: 254px;
 `;
 
-
 const TodayTopicTitle = styled.div`
   font-weight: 700;
   font-size: 14px;
@@ -33,7 +33,7 @@ const TodayTopicTitle = styled.div`
 
 const OverlappingBox = styled.div`
   position: absolute;
-  top: -10px;
+  top: 165px;
   width: 78px;
   height: 22px;
   border-radius: 10px;
@@ -46,7 +46,7 @@ const OverlappingText = styled.div`
   justify-content: center;
   font-size: 12px;
   font-weight: 700;
-  padding: 2px 0 0 0;
+  padding: 3.5px 0 0 0;
 `;
 
 const TopicTextBox = styled.div`
@@ -54,7 +54,7 @@ const TopicTextBox = styled.div`
   height: 633px;
   border-radius: 15px;
   background-color: #d5e4d8;
-  margin: 23px 0 0 23px;
+  margin: 19px 0 0 23px;
 `;
 
 const TopicTitle = styled.div`
@@ -67,13 +67,12 @@ const TopicTitle = styled.div`
   font-size: 15px;
   font-weight: 600;
   margin: 28px 0 0 45px;
-  padding : 31px 0 0 0;
+  padding: 31px 0 0 0;
 `;
-
 
 const TopicText = styled.div`
   border: none;
-  display : flex;
+  display: flex;
   background-color: #d5e4d8;
   font-family: Pretendard;
   font-size: 10px;
@@ -83,17 +82,17 @@ const TopicText = styled.div`
   height: 500px;
 `;
 
-
 const Writer = styled.div`
   color: #000;
   font-size: 10px;
   font-weight: 500;
-  margin : 20px 0 0 252px;
-`
+  margin: 20px 0 0 252px;
+  font-family: Pretendard;
+`;
 
 const Emoji = styled.button`
   position: absolute;
-  top: 142px;
+  top: 312px;
   left: 299px;
   border: none;
   background-color: #d5e4d8;
@@ -101,8 +100,8 @@ const Emoji = styled.button`
 
 const EmojiBox = styled.div`
   position: absolute;
-  top: 105px;
-  left: 300px;
+  top: 274px;
+  left: 297px;
   width: 88px;
   height: 28px;
   border-radius: 10px;
@@ -115,7 +114,7 @@ const EmojiBox = styled.div`
 const EmojiButton = styled.button`
   position: relative;
   background-color: #fff;
-  border-radius: 2000px;
+  margin : 3px 0 0 1.5px;
   outline: none;
   border: none;
   width: 20px;
@@ -124,61 +123,64 @@ const EmojiButton = styled.button`
 
 const BottomContainer = styled.div`
   position: fixed;
-  bottom : 28px;
-  left : 34px;
+  bottom: 28px;
+  left: 34px;
   color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  display : flex;
-  align-items : center;
-  justify-content : center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ScrapBtn = styled.button`
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size : 15px;
+  color: #fff;
   width: 134px;
   height: 50px;
   border-radius: 10px;
   background-color: #3e864d;
-  border : none;
-  
+  border: none;
 `;
 
 const CloseBtn = styled.button`
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size : 15px;
+  color: #fff;
   width: 174px;
   height: 50px;
   border-radius: 10px;
   background-color: #a4a4a4;
-  border : none;
-  margin : 0 0 0 12px;
+  border: none;
+  margin: 0 0 0 12px;
 `;
 
 const ScrapImgs = styled.img`
-  margin : 0 11.68px 0 0;
+  margin: 0 11.68px -3px 0;
   width: 13.318px;
   height: 15.339px;
-  
 `;
 
 export default function LookEssay() {
   const [isClicked, setIsCliked] = useState(false);
   const [selectEmoji, setSelectEmoji] = useState(Heart);
   const [isEmojiClicked, setIsEmojiClicked] = useState(false);
-  const [isScrapClicked,setIsScrapClicked]=useState(false);
-  const [textValue,setTextValue]=useState('');
-  const [title,setTitle]=useState('제목 정하기')
-  const [text,setText]=useState("자유롭게 오늘의 토픽에 대한 자신의 생각을 적어주세요")
+  const [isScrapClicked, setIsScrapClicked] = useState(false);
+  const [textValue, setTextValue] = useState("");
+  const [title, setTitle] = useState("제목 정하기");
+  const [text, setText] = useState(
+    "자유롭게 오늘의 토픽에 대한 자신의 생각을 적어주세요"
+  );
 
   const emojiList = ["😭", "🤬", "🫢", "🥰"];
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const handleScrapClicked = () => {
     setIsScrapClicked(!isScrapClicked);
-    if(!isScrapClicked){
-
+    if (!isScrapClicked) {
+    } else {
     }
-    else{
-
-    }
-  }
+  };
   const handleEmojiClicked = () => {
     setIsCliked(!isClicked);
   };
@@ -200,12 +202,13 @@ export default function LookEssay() {
   const onTextInput = (e) => {
     setTextValue(e.target.value);
     console.log(textValue);
-  }
+  };
   const handleClose = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
   return (
     <Main>
+      <MainBackHeader />
       <TodayTopic>
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>
@@ -236,8 +239,9 @@ export default function LookEssay() {
       </TopicTextBox>
       <BottomContainer>
         <ScrapBtn onClick={handleScrapClicked}>
-          <ScrapImgs src={isScrapClicked ? ScrapImg :UnScrapImg} alt="Scrap" />스크랩 하기
-          </ScrapBtn>
+          <ScrapImgs src={isScrapClicked ? ScrapImg : UnScrapImg} alt="Scrap" />
+          스크랩 하기
+        </ScrapBtn>
         <CloseBtn onClick={handleClose}>닫기</CloseBtn>
       </BottomContainer>
     </Main>
