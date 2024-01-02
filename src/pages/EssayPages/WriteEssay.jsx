@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
 import MainBackHeader from "../../components/HeaderList/MainBackHeader";
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -166,7 +167,7 @@ export default function WriteEssay() {
         `${apiUrl}/api/essays`,
         {
           mood: state.selectedFeeling,
-          topicId: 0,
+          topicId: state.topicId,
           title: titleValue,
           contents: textValue,
         },
@@ -196,7 +197,7 @@ export default function WriteEssay() {
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>
         </OverlappingBox>
-        <TodayTopicTitle>"오늘의 토픽 들어갈 자리"</TodayTopicTitle>
+        <TodayTopicTitle>{state.data.contents}</TodayTopicTitle>
       </TodayTopic>
       <TopicTextBox>
         <TopicTitle
