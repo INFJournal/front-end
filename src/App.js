@@ -32,7 +32,7 @@ function App() {
             <Route path="/openessay" element={<OpenEssay />} />
             <Route path="/lookessay" element={<LookEssay />} />
             <Route path="/writeessay" element={<WriteEssay />} />
-            <Route path="/essayrandomlist" element={<EssayRandomList />} />
+            <Route path="/essayrandmolist" element={<EssayRandomList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/topic" element={<Topic />} />
           </Routes>

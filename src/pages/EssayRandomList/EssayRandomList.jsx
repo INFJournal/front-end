@@ -16,6 +16,8 @@ import UnlikeImg from "../../img/Heart.png";
 export default function EssayList() {
   //const data=[1,2,3,4,5]
   const [data, setData] = useState([]);
+  const [topic, setTopic] = useState();
+  const [isWritten, setIsWritten] = useState();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
 
@@ -31,21 +33,13 @@ export default function EssayList() {
       .then((response) => {
         console.log(response);
         setData(response.data.result);
+        setTopic(response.data.result.topic);
+        //setIsWritten(response.data.result.isWritten);
       })
       .catch((error) => {
         console.error("데이터 가져오기 오류:", error);
       });
   }, []);
-
-  const handleLookEssayBtnClick = (essay) => {
-    navigate("/lookessay", {
-      state: {
-        topic: essay.topic,
-        title: essay.title,
-        content: essay.content,
-      },
-    });
-  };
 
   return (
     <div>
@@ -60,7 +54,7 @@ export default function EssayList() {
               textAlign: "left",
             }}
           >
-            topic
+            스스로 의식하지 못하는 행복이 가능한가?
           </h4>
           <div
             style={{
@@ -73,9 +67,6 @@ export default function EssayList() {
             <LikeImgs src={UnlikeImg} alt="like" />
             <ScrapImgs src={ScrapImg} alt="Scrap" />
           </div>
-          <LikeButton onClick={() => handleLookEssayBtnClick(essay)}>
-            {essay.likeType}
-          </LikeButton>
         </Essay>
       ))}
     </div>

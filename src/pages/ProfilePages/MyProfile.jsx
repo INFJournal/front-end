@@ -28,7 +28,7 @@ export default function Myprofile() {
       <Header />
       <MyProfileWrap>
         <img src={profileImg} alt="프로필 이미지" />
-        <p>닉네임</p>
+        <p>김넬리</p>
       </MyProfileWrap>
     </>
   );
