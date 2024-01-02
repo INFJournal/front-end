@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Heart from "../../img/Heart.png";
 import UnScrapImg from "../../img/UnScrap.png";
 import ScrapImg from "../../img/Scrap.png";
 import { useNavigate } from "react-router-dom";
 import MainBackHeader from "../../components/HeaderList/MainBackHeader";
+import axios from "axios";
 const Main = styled.div`
   position: relative;
   font-family: Pretendard;
@@ -114,7 +115,7 @@ const EmojiBox = styled.div`
 const EmojiButton = styled.button`
   position: relative;
   background-color: #fff;
-  margin : 3px 0 0 1.5px;
+  margin: 3px 0 0 1.5px;
   outline: none;
   border: none;
   width: 20px;
@@ -134,7 +135,7 @@ const BottomContainer = styled.div`
 const ScrapBtn = styled.button`
   font-family: Pretendard;
   font-weight: 700;
-  font-size : 15px;
+  font-size: 15px;
   color: #fff;
   width: 134px;
   height: 50px;
@@ -146,7 +147,7 @@ const ScrapBtn = styled.button`
 const CloseBtn = styled.button`
   font-family: Pretendard;
   font-weight: 700;
-  font-size : 15px;
+  font-size: 15px;
   color: #fff;
   width: 174px;
   height: 50px;
@@ -167,10 +168,37 @@ export default function LookEssay() {
   const [selectEmoji, setSelectEmoji] = useState(Heart);
   const [isEmojiClicked, setIsEmojiClicked] = useState(false);
   const [isScrapClicked, setIsScrapClicked] = useState(false);
-  const [title, setTitle] = useState("제목 정하기");
-  const [text, setText] = useState(
-    "자유롭게 오늘의 토픽에 대한 자신의 생각을 적어주세요"
-  );
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [data, setData] = useState(null);
+  const [topic, setTopic] = useState("");
+
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    // 페이지 최초 로드 시에만 데이터를 가져옴
+    fetchData();
+  }, []); // 빈 배열은 최초 로드 시에만 실행하도록 함
+
+  const fetchData = () => {
+    const apiEndpoint = "http://3.38.178.117/api/me/essays";
+    axios
+      .get(apiEndpoint, {
+        headers: {
+          Authorization: 4,
+        },
+      })
+      .then((response) => {
+        const essay = response.data.result[0]; // Assuming you want the first essay
+        setData(response.data.result);
+        setTitle(essay.title);
+        setText(essay.contents);
+        setTopic(essay.topic);
+      })
+      .catch((error) => {
+        console.error("데이터 가져오기 오류:", error);
+      });
+  };
 
   const emojiList = ["😭", "🤬", "🫢", "🥰"];
   const navigate = useNavigate();
@@ -199,7 +227,7 @@ export default function LookEssay() {
   };
 
   const handleClose = () => {
-    navigate("/EssayRandomList");
+    navigate("/EssayRandomList", { state: { data } });
   };
   return (
     <Main>
@@ -208,7 +236,7 @@ export default function LookEssay() {
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>
         </OverlappingBox>
-        <TodayTopicTitle>"오늘의 토픽 들어갈 자리"</TodayTopicTitle>
+        <TodayTopicTitle>{title}</TodayTopicTitle>
       </TodayTopic>
       <TopicTextBox>
         <Emoji>
@@ -230,7 +258,7 @@ export default function LookEssay() {
         <TopicTitle>{title}</TopicTitle>
         <BorderLine />
         <TopicText>{text}</TopicText>
-        <Writer>글쓴이 | iooemg </Writer>
+        <Writer>글쓴이 | Xingu </Writer>
       </TopicTextBox>
       <BottomContainer>
         <ScrapBtn onClick={handleScrapClicked}>
