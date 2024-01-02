@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Main = styled.div`
@@ -33,6 +34,11 @@ const TopicText = styled.div`
 `;
 
 export default function Topic() {
+    const navigate=useNavigate();
+    const ClickButton =()=>{
+        navigate("/OpenEssay");
+    }
+
   return (
     <Main>
       <MainTopic>
@@ -44,7 +50,7 @@ export default function Topic() {
             <TopicText>오늘의 토픽</TopicText>
         </TopicBox>
         <TopicBox style={{backgroundColor : "#A0B2A4"}}>
-            <TopicText>랜덤 우체통 보기</TopicText>
+            <TopicText onClick={ClickButton}>랜덤 우체통 보기</TopicText>
         </TopicBox>
       </Topics>
     </Main>
