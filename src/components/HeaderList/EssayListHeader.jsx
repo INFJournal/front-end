@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
 import profileImg from "../../img/Profile.jpg";
 
-const HText=styled.div`
+const HText = styled.div`
 width: "80px", height: "24px";
 font-weight:bold;
 `;
@@ -59,11 +59,13 @@ export default function MainBackHeader() {
         </span>
       </Back>
       <Logo>
-          <HText>에세이 리스트</HText>
+        <HText>에세이 리스트</HText>
       </Logo>
-      <Profile>
-        <img src={profileImg} alt="프로필 이미지" />
-      </Profile>
+      <Link to="/myprofile" style={{ textDecoration: "none" }}>
+        <Profile>
+          <img src={profileImg} alt="프로필 이미지" />
+        </Profile>
+      </Link>
     </MainBackHeaderWrap>
   );
 }

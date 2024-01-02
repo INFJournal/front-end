@@ -42,9 +42,11 @@ export default function MainHeader() {
           />
         </Link>
       </Logo>
-      <Profile>
-        <img src={profileImg} alt="프로필 이미지" />
-      </Profile>
+      <Link to="/myprofile" style={{ textDecoration: "none" }}>
+        <Profile>
+          <img src={profileImg} alt="프로필 이미지" />
+        </Profile>
+      </Link>
     </MainBackHeaderWrap>
   );
 }

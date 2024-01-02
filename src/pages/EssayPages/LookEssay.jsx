@@ -227,7 +227,7 @@ export default function LookEssay() {
   };
 
   const handleClose = () => {
-    navigate("/EssayRandomList", { state: { data } });
+    navigate("/essayrandmolist", { state: { data } });
   };
   return (
     <Main>
