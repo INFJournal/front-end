@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const ResiterWrap = styled.div`
@@ -39,6 +39,20 @@ const StyledInput = styled.div`
   }
 `;
 export default function RegisterImgNickname() {
+  const [nickname, setNickname] = useState("");
+
+  const onChangeNickname = (event) => {
+    const Nickname = event.target.value;
+    setNickname(Nickname);
+    console.log(Nickname);
+  };
+
+  const onEnterPress = (event) => {
+    if (event.key === "Enter") {
+      // Enter 키를 누르면 API 통신되게 코드 구현
+      //localStorage.setItem("nickname", nickname);
+    }
+  };
   return (
     <ResiterWrap>
       <RegisterBtn>
@@ -46,7 +60,13 @@ export default function RegisterImgNickname() {
       </RegisterBtn>
       <p>프로필 이미지와 닉네임을 등록해주세요.</p>
       <StyledInput>
-        <input type="text" placeholder="닉네임 입력" />
+        <input
+          type="text"
+          placeholder="닉네임 입력"
+          value={nickname}
+          onChange={onChangeNickname}
+          onkeydown={onEnterPress}
+        />
       </StyledInput>
     </ResiterWrap>
   );

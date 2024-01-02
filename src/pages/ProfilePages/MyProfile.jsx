@@ -4,18 +4,23 @@ import profileImg from "../../img/Profile.jpg";
 
 const MyProfileWrap = styled.div`
   margin-top: 103px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+
   > img {
-    border-radius: 90px;
+    border-radius: 50%; /* 반지름을 50%로 하여 이미지를 원형으로 만듭니다. */
     width: 80px;
     height: 80px;
   }
+
   > p {
     margin-top: 20px;
   }
 `;
+
 export default function Myprofile() {
   return (
     <MyProfileWrap>
