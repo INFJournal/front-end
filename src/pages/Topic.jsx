@@ -110,13 +110,19 @@ const TodayTopicName = styled.div`
 export default function Topic() {
   const [isTopicDone, setIsTopicDone] = useState(false);
 
+  const [isDrag, setIsDrag] = useState(false);
+  const [startX, setStartX] = useState();
+  const scrollRef = useRef(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+
   //API 연동
   const [data, setData] = useState(null);
   const [dataContents, setDataContents] = useState();
 
   useEffect(() => {
-    // API 엔드포인트를 실제 엔드포인트로 교체
-    const apiEndpoint = `http://10.10.140.49:8080/api/topics/today`;
+    // API 엔드포인트를 apiUrl 변수로 교체
+    const apiEndpoint = `${apiUrl}/api/topics/today`;
     axios
       .get(apiEndpoint, {
         headers: {
@@ -128,12 +134,11 @@ export default function Topic() {
         setData(response.data.result);
         setIsTopicDone(response.data.result.isWritten);
         setDataContents(response.data.result.contents);
-
       })
       .catch((error) => {
         console.error("데이터 가져오기 오류:", error);
       });
-  }, []);
+  });
 
   const navigate = useNavigate();
   const ClickTopicButton = () => {
@@ -172,7 +177,7 @@ export default function Topic() {
                 리스트를 보러갈까요?"
               </TopicText>
             ) : (
-              <TopicText>"오늘의 토픽"</TopicText>
+              <TopicText>{dataContents}</TopicText>
             )}
           </TopicBox>
           <TopicBox style={{ backgroundColor: "#A0B2A4", height: "86px" }}>
