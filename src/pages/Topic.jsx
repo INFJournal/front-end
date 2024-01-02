@@ -5,7 +5,7 @@ import MainHeader from "../components/HeaderList/MainHeader";
 import LetterImg from "../img/Letter.png";
 import BackImg from "../img/BackImg.png";
 import HumanImg from "../img/TopicImg.png";
-import axios from 'axios';
+import axios from "axios";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -113,20 +113,22 @@ export default function Topic() {
   //API 연동
   const [data, setData] = useState(null);
   const [dataContents, setDataContents] = useState();
+
   useEffect(() => {
     // API 엔드포인트를 실제 엔드포인트로 교체
     const apiEndpoint = `http://10.10.140.49:8080/api/topics/today`;
     axios
       .get(apiEndpoint, {
         headers: {
-          Authorization: 4
-        }
+          Authorization: 4,
+        },
       })
       .then((response) => {
         console.log(response);
         setData(response.data.result);
         setIsTopicDone(response.data.result.isWritten);
         setDataContents(response.data.result.contents);
+
       })
       .catch((error) => {
         console.error("데이터 가져오기 오류:", error);
@@ -136,23 +138,23 @@ export default function Topic() {
   const navigate = useNavigate();
   const ClickTopicButton = () => {
     if (isTopicDone) {
-      navigate("/essaylist",{ state: { data } });
+      navigate("/essaylist", { state: { data } });
     } else {
-      navigate("/feelingchoice",{ state: { data } });
+      navigate("/feelingchoice", { state: { data } });
     }
   };
   const ClickButton = () => {
     navigate("/openessay");
   };
 
-  const handleTopicBox =()=> {
-    navigate("/essayrandomlist")
-  }
+  const handleTopicBox = () => {
+    navigate("/essayrandomlist");
+  };
   const todayTopicData = [
     { title: dataContents, image: HumanImg, author: "Xingu" },
     { title: dataContents, image: HumanImg, author: "Jenn" },
   ];
-  
+
   return (
     <>
       <MainHeader />
@@ -164,13 +166,13 @@ export default function Topic() {
         <Topics>
           <TopicBox onClick={ClickTopicButton}>
             {isTopicDone ? (
-              <TopicText>"오늘의 토픽을 이미 작성하셨네요
-              <br />
-              리스트를 보러갈까요?"</TopicText>
-            ) : (
               <TopicText>
-                "오늘의 토픽"
+                "오늘의 토픽을 이미 작성하셨네요
+                <br />
+                리스트를 보러갈까요?"
               </TopicText>
+            ) : (
+              <TopicText>"오늘의 토픽"</TopicText>
             )}
           </TopicBox>
           <TopicBox style={{ backgroundColor: "#A0B2A4", height: "86px" }}>
