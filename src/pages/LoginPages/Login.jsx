@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../img/barcode.svg";
 import styled, { createGlobalStyle } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // 전역 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -44,6 +45,8 @@ const StyledInput = styled.div`
 `;
 export default function Login() {
   const [nickname, setNickname] = useState("");
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
 
   const onChangeNickname = (event) => {
     const Nickname = event.target.value;
@@ -51,10 +54,31 @@ export default function Login() {
     console.log(Nickname);
   };
 
-  const onEnterPress = (event) => {
+  const onEnterPress = async (event) => {
     if (event.key === "Enter") {
+      try {
+        const response = await axios.post(`${apiUrl}/api/sign-in`, {
+          nickname: nickname,
+        });
+
+        // 서버 응답 확인
+        console.log("Server response:", response.data);
+
+        // userId 추출
+        const userId = response.data.result.userId;
+
+        // userId를 로컬 스토리지에 저장
+        localStorage.setItem("userId", userId);
+
+        // 로그인 성공 후 페이지 이동
+        navigate("/topic");
+      } catch (error) {
+        console.error("Error during API call:", error);
+        alert("존재하지 않는 닉네임입니다.");
+      }
     }
   };
+
   return (
     <>
       <img

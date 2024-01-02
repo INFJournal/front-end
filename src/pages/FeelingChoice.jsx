@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../components/HeaderList/MainBackHeader";
+import { Link } from "react-router-dom";
 
 const FeelingChoiceWrap = styled.div`
   margin-left: 63px;
@@ -100,9 +101,11 @@ export default function FeelingChoice() {
             </div>
           </Line>
         </Feelings>
-        <NextBtn>
-          <button>다음으로</button>
-        </NextBtn>
+        <Link to="/writeessay" style={{ textDecoration: "none" }}>
+          <NextBtn>
+            <button>다음으로</button>
+          </NextBtn>
+        </Link>
       </FeelingChoiceWrap>
     </>
   );
