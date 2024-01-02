@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Heart from "./pics/Heart.png";
+import Heart from "../../img/Heart.png";
 
 const TodayTopic = styled.div`
   display: flex;
@@ -111,10 +111,10 @@ const EmojiBox = styled.div`
 `;
 
 const EmojiButton = styled.button`
-  position : relative;
+  position: relative;
   background-color: #fff;
-  border-radius : 2000px;
-  outline : none;
+  border-radius: 2000px;
+  outline: none;
   border: none;
   width: 20px;
   height: 19px;
