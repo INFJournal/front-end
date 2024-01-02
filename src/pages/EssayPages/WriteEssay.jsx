@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import MainBackHeader from "../../components/HeaderList/MainBackHeader";
+
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Main = styled.div`
   position: relative;
+  font-family: Pretendard;
 `;
 const TodayTopic = styled.div`
   display: flex;
@@ -13,7 +17,7 @@ const TodayTopic = styled.div`
   border: 3px solid #d5e4d8;
   width: 305px;
   height: 78px;
-  margin: 111px 0 0 42px;
+  margin: 52px 0 0 42px;
 `;
 
 const TodayTopicTitle = styled.div`
@@ -23,7 +27,7 @@ const TodayTopicTitle = styled.div`
 
 const OverlappingBox = styled.div`
   position: absolute;
-  top: -10px;
+  top: 165px;
   width: 78px;
   height: 22px;
   border-radius: 10px;
@@ -36,7 +40,7 @@ const OverlappingText = styled.div`
   justify-content: center;
   font-size: 12px;
   font-weight: 700;
-  padding: 2px 0 0 0;
+  padding: 3.5px 0 0 0;
 `;
 
 const TopicTextBox = styled.div`
@@ -44,7 +48,7 @@ const TopicTextBox = styled.div`
   height: 633px;
   border-radius: 15px;
   background-color: #d5e4d8;
-  margin: 23px 0 0 23px;
+  margin: 19px 0 0 23px;
 `;
 const TopicTitle = styled.input`
   border: none;
@@ -95,7 +99,7 @@ const SaveBtn = styled.button`
 const ShowAv = styled.div`
   position: relative;
   display: flex;
-  margin: 15px 0 0 271px;
+  margin: 10px 0 100px 281px;
   color: #000;
   font-family: Pretendard;
   font-size: 10px;
@@ -113,7 +117,7 @@ const ShowBtn = styled.div`
 const ShowCircleBefore = styled.div`
   position: absolute;
   top: 1px;
-  left: 68px;
+  left: 47px;
   width: 14px;
   height: 14px;
   background-color: #a0b2a4;
@@ -123,7 +127,7 @@ const ShowCircleBefore = styled.div`
 const ShowCircleAfter = styled.div`
   position: absolute;
   top: 1px;
-  left: 54px;
+  left: 62px;
   width: 14px;
   height: 14px;
   background-color: #3e864d;
@@ -132,9 +136,11 @@ const ShowCircleAfter = styled.div`
 
 export default function WriteEssay() {
   const [textValue, setTextValue] = useState("");
+  const [titleValue, setTitleValue] = useState("");
   const [showAvBtn, setShowAvBtn] = useState(false);
   const { state } = useLocation();
   const navigate = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     console.log("selectedFeeling:", state);
@@ -142,16 +148,50 @@ export default function WriteEssay() {
 
   const onTextInput = (e) => {
     setTextValue(e.target.value);
-    console.log(textValue);
+    console.log(e.target.value);
+  };
+
+  const onTitleInput = (e) => {
+    setTitleValue(e.target.value);
+    console.log(e.target.value);
   };
   const handleMove = () => {
     setShowAvBtn(!showAvBtn);
   };
+
   const handleSave = () => {
-    navigate("/essaylist");
+    // 서버로 데이터를 보내고 응답을 처리합니다.
+    axios
+      .post(
+        `${apiUrl}/api/essays`,
+        {
+          mood: state.selectedFeeling,
+          topicId: 0,
+          title: titleValue,
+          contents: textValue,
+        },
+        {
+          headers: {
+            Authorization: 4,
+          },
+        }
+      )
+      .then((response) => {
+        // 서버에서의 응답을 확인하고 필요에 따라 처리합니다.
+        console.log(response.data);
+
+        // 에세이 목록 페이지로 이동합니다.
+        navigate("/essaylist");
+      })
+      .catch((error) => {
+        // 오류가 발생한 경우 처리합니다.
+        console.error("Error:", error);
+      });
   };
+
   return (
     <Main>
+      <MainBackHeader />
       <TodayTopic>
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>
@@ -159,7 +199,11 @@ export default function WriteEssay() {
         <TodayTopicTitle>"오늘의 토픽 들어갈 자리"</TodayTopicTitle>
       </TodayTopic>
       <TopicTextBox>
-        <TopicTitle type="text" placeholder="제목 정하기" />
+        <TopicTitle
+          onBlur={onTitleInput}
+          type="text"
+          placeholder="제목 정하기"
+        />
         <BorderLine />
         <TopicText
           onBlur={onTextInput}

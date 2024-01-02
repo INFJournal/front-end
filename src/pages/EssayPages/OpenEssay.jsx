@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import imageBook from "../../img/book.png";
 import { useNavigate } from "react-router-dom";
+import MainHeader from "../../components/HeaderList/MainHeader";
 
 const Main = styled.div`
-  margin: 211px 0 0 42px;
+  margin: 100px 0 0 42px;
   color: #000;
   font-size: 24px;
   font-weight: 800;
+  font-family : Pretendard;
 `;
 
 const BookImg = styled.img`
@@ -19,6 +21,7 @@ const OpenButton = styled.button`
   background-color: #3e864d;
   color: #fff;
   font-size: 15px;
+  font-family : Pretendard;
   font-weight: 700;
   width: 320px;
   height: 50px;
@@ -36,6 +39,7 @@ export default function OpenEssay() {
 
   return (
     <div>
+      <MainHeader/>
       <Main>
         인프제님,
         <br />
