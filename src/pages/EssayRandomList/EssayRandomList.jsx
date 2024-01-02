@@ -16,14 +16,16 @@ import UnlikeImg from "../../img/Heart.png";
 export default function EssayList() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
+
 
   useEffect(() => {
-    const apiEndpoint = `http://43.201.150.67/swagger-ui/index.html#//api/me/inbox/essays`;
+    const apiEndpoint = `http://3.38.178.117/swagger-ui/index.html#//api/me/inbox/essays`;
 
     axios
       .get(apiEndpoint, {
         headers: {
-          Authorization: 4
+          Authorization: userId,
         }
       })
       .then((response) => {

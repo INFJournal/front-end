@@ -9,6 +9,9 @@ export default function EssayList() {
   const [like, setLikeBtn] = useState(Array(data.length).fill(false));
   const [scrap, setScrap] = useState(Array(data.length).fill(0));
   const [likesum, setLikeSum] = useState(Array(data.length).fill(0));
+  const userId = localStorage.getItem("userId");
+  const apiUrl = process.env.REACT_APP_API_URL;
+
 
   const likeBtnOn = (index) => {
     let likeCnt = [...like];
@@ -17,14 +20,12 @@ export default function EssayList() {
   };
 
   useEffect(() => {
-    const userId = "your_user_id";
-
-    const apiEndpoint = `http://43.201.150.67/swagger-ui/index.html#//api/me/essays`;
+    const apiEndpoint = `${apiUrl}/api/topics/today`;
 
     axios
       .get(apiEndpoint, {
         headers: {
-          Authorization: 4,
+          Authorization: userId,
         },
       })
       .then((response) => {
@@ -35,7 +36,6 @@ export default function EssayList() {
         console.error("데이터 가져오기 오류:", error);
       });
   }, []);
-
 
 
   return (
