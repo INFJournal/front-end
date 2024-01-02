@@ -62,7 +62,7 @@ const TodayTopicBoxes = styled.div`
   position: absolute;
   display: flex;
   top: 630px;
-  left: 80px;
+  left: 40px;
   flex-direction: row;
   overflow-x: scroll; // 가로 스크롤을 숨김
 `;
