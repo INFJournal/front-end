@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Main = styled.div`
   position: relative;
@@ -133,8 +133,12 @@ const ShowCircleAfter = styled.div`
 export default function WriteEssay() {
   const [textValue, setTextValue] = useState("");
   const [showAvBtn, setShowAvBtn] = useState(false);
-
+  const { state } = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("selectedFeeling:", state);
+  });
 
   const onTextInput = (e) => {
     setTextValue(e.target.value);
