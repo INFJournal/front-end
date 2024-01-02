@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import MainHeader from "../components/HeaderList/MainHeader";
 import LetterImg from "../img/Letter.png";
 import BackImg from "../img/BackImg.png";
 import HumanImg from "../img/TopicImg.png";
+import axios from 'axios';
+
 const Main = styled.div`
   margin: 113px 0 0 42px;
   color: #000;
@@ -102,9 +104,34 @@ const TodayTopicName = styled.div`
 
 export default function Topic() {
   const [isTopicDone, setIsTopicDone] = useState(false);
-  const scrollRef = useRef(null);
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState();
+  const scrollRef = useRef(null);
+
+  //API 연동
+  const [data, setData] = useState(null);
+ 
+  useEffect(() => {
+    // API 엔드포인트를 실제 엔드포인트로 교체
+    const apiEndpoint = `http://10.10.140.49:8080/api/topics/today`;
+    axios
+      .get(apiEndpoint, {
+        headers: {
+          Authorization: 4
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        setData(response.data.result);
+        setIsTopicDone(response.data.result.isWritten);
+        
+      })
+      .catch((error) => {
+        console.error("데이터 가져오기 오류:", error);
+      });
+  }, []);
+
+
 
   const onDragStart = (e) => {
     e.preventDefault();
@@ -140,16 +167,20 @@ export default function Topic() {
   const navigate = useNavigate();
   const ClickTopicButton = () => {
     if (isTopicDone) {
-      navigate("/feelingchoice");
+      navigate("/feelingchoice",{ state: { data } });
     } else {
-      navigate("/essaylist");
+      navigate("/essaylist",{ state: { data } });
     }
   };
   const ClickButton = () => {
     navigate("/openessay");
   };
+
+  const handleTopicBox =()=> {
+    navigate("/essayrandomlist")
+  }
   const todayTopicData = [
-    { title: "그날의 명언 들어갈 자리", image: HumanImg, author: "ioeemg" },
+    { title: "dd", image: HumanImg, author: "ioeemg" },
     { title: "그날의 명언 들어갈 자리2", image: HumanImg, author: "ioeemg" },
     { title: "그날의 명언 들어갈 자리3", image: HumanImg, author: "ioeemg" },
   ];
@@ -165,12 +196,12 @@ export default function Topic() {
         <Topics>
           <TopicBox onClick={ClickTopicButton}>
             {isTopicDone ? (
-              <TopicText>"오늘의 토픽"</TopicText>
+              <TopicText>"오늘의 토픽을 이미 작성하셨네요
+              <br />
+              리스트를 보러갈까요?"</TopicText>
             ) : (
               <TopicText>
-                "오늘의 토픽을 이미 작성하셨네요
-                <br />
-                리스트를 보러갈까요?"
+                "오늘의 토픽"
               </TopicText>
             )}
           </TopicBox>
@@ -193,7 +224,7 @@ export default function Topic() {
       ref={scrollRef}
         >
           {todayTopicData.map((topic, index) => (
-            <TodayTopicBox key={index}>
+            <TodayTopicBox onClick={handleTopicBox} key={index}>
               <TodayTopicTitle>{topic.title}</TodayTopicTitle>
               <TodayTopicImg src={topic.image} />
               <TodayTopicName>by {topic.author}</TodayTopicName>
