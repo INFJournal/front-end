@@ -34,7 +34,7 @@ export default function MainHeader() {
   return (
     <MainBackHeaderWrap>
       <Logo>
-        <Link to="/">
+        <Link to="/topic">
           <img
             src={logo}
             style={{ width: "80px", height: "24px" }}

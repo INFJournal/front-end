@@ -17,6 +17,7 @@ import { AnimatePresence } from "framer-motion";
 
 function App() {
   const isLogin = localStorage.getItem("userId") !== null;
+  console.log(localStorage.getItem("userId"));
   return (
     <>
       <GlobalStyle />

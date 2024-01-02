@@ -54,7 +54,7 @@ export default function MainBackHeader() {
         </span>
       </Back>
       <Logo>
-        <Link to="/">
+        <Link to="/topic">
           <img
             src={logo}
             style={{ width: "80px", height: "24px" }}
