@@ -19,7 +19,7 @@ export default function EssayList() {
   useEffect(() => {
     const userId = "your_user_id";
 
-    const apiEndpoint = `http://10.10.140.49:8080/api/me/essays`;
+    const apiEndpoint = `http://43.201.150.67/swagger-ui/index.html#//api/me/essays`;
 
     axios
       .get(apiEndpoint, {

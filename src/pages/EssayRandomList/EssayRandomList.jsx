@@ -35,8 +35,14 @@ export default function EssayList() {
       });
   }, []);
 
-  const handleLookEssayBtnClick = () => {
-    navigate("/lookessay");
+  const handleLookEssayBtnClick = (essay) => {
+    navigate("/lookessay", {
+      state: {
+        topic: essay.topic,
+        title: essay.title,
+        content: essay.content
+      }
+    });
   };
 
   return (
@@ -50,7 +56,7 @@ export default function EssayList() {
             <LikeImgs src={essay.isLiked ? "❤️" : UnlikeImg} alt="like" />
             <ScrapImgs src={essay.isScraped ? ScrapImg : UnScrapImg} alt="Scrap" />
           </div>
-          <LikeButton onClick={handleLookEssayBtnClick}>{essay.likeType}</LikeButton>
+          <LikeButton onClick={handleLookEssayBtnClick(essay)}>{essay.likeType}</LikeButton>
         </Essay>
       ))}
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Heart from "../../img/Heart.png";
 import UnScrapImg from "../../img/UnScrap.png";
@@ -163,14 +163,17 @@ const ScrapImgs = styled.img`
 `;
 
 export default function LookEssay() {
+  const location = useLocation();
+  const { state } = location;
+  const { topic, title, content } = state;
   const [isClicked, setIsCliked] = useState(false);
   const [selectEmoji, setSelectEmoji] = useState(Heart);
   const [isEmojiClicked, setIsEmojiClicked] = useState(false);
   const [isScrapClicked, setIsScrapClicked] = useState(false);
-  const [title, setTitle] = useState("제목 정하기");
-  const [text, setText] = useState(
-    "자유롭게 오늘의 토픽에 대한 자신의 생각을 적어주세요"
-  );
+  //const [title, setTitle] = useState("제목 정하기");
+  // //const [text, setText] = useState(
+  //   "자유롭게 오늘의 토픽에 대한 자신의 생각을 적어주세요"
+  // );
 
   const emojiList = ["😭", "🤬", "🫢", "🥰"];
   const navigate = useNavigate();
@@ -208,7 +211,7 @@ export default function LookEssay() {
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>
         </OverlappingBox>
-        <TodayTopicTitle>"오늘의 토픽 들어갈 자리"</TodayTopicTitle>
+        <TodayTopicTitle>{`"${topic}"`}</TodayTopicTitle>
       </TodayTopic>
       <TopicTextBox>
         <Emoji>
@@ -227,9 +230,9 @@ export default function LookEssay() {
             ))}
           </EmojiBox>
         )}
-        <TopicTitle>{title}</TopicTitle>
+        <TopicTitle>{`"${title}"`}</TopicTitle>
         <BorderLine />
-        <TopicText>{text}</TopicText>
+        <TopicText>{`"${content}"`}</TopicText>
         <Writer>글쓴이 | iooemg </Writer>
       </TopicTextBox>
       <BottomContainer>
