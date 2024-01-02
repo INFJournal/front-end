@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/HeaderList/MainBackHeader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const FeelingChoiceWrap = styled.div`
   margin-left: 63px;
@@ -66,15 +66,22 @@ const NextBtn = styled.div`
 export default function FeelingChoice() {
   const [selectedFeeling, setSelectedFeeling] = useState("");
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const onFeelingClick = (feeling) => {
     setSelectedFeeling(feeling);
-    console.log(selectedFeeling);
+    console.log(feeling);
+    console.log(state.data);
   };
 
   const handleNextClick = () => {
     if (selectedFeeling) {
-      navigate("/writeessay", { state: { selectedFeeling: selectedFeeling } });
+      navigate("/writeessay", {
+        state: {
+          selectedFeeling: selectedFeeling,
+          data: state.data,
+        },
+      });
     }
   };
 
