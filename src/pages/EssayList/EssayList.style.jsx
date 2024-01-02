@@ -35,10 +35,10 @@ font-size:12px;
 font-weight:bold;
 `
 
-export const EmojiBox = styled.div`
+export const EmojiCon = styled.div`
 background-color:rgba(255,255,255,1);
 position: absolute;
-margin: -68% 0 0 66%;
+margin: -40% 0 0 66%;
 width: 85px;
 height: 18px;
 border-radius: 10px;
