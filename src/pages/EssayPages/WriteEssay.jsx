@@ -46,7 +46,7 @@ const TopicTextBox = styled.div`
   height: 633px;
   border-radius: 15px;
   background-color: #d5e4d8;
-  margin: 23px 0 0 23px;
+  margin: 19px 0 0 23px;
 `;
 const TopicTitle = styled.input`
   border: none;
@@ -97,7 +97,7 @@ const SaveBtn = styled.button`
 const ShowAv = styled.div`
   position: relative;
   display: flex;
-  margin: 10px 0 0 281px;
+  margin: 10px 0 100px 281px;
   color: #000;
   font-family: Pretendard;
   font-size: 10px;

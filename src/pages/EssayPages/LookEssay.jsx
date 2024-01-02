@@ -54,7 +54,7 @@ const TopicTextBox = styled.div`
   height: 633px;
   border-radius: 15px;
   background-color: #d5e4d8;
-  margin: 19px 0 0 23px;
+  margin: 19px 0 100px 23px;
 `;
 
 const TopicTitle = styled.div`
@@ -167,7 +167,6 @@ export default function LookEssay() {
   const [selectEmoji, setSelectEmoji] = useState(Heart);
   const [isEmojiClicked, setIsEmojiClicked] = useState(false);
   const [isScrapClicked, setIsScrapClicked] = useState(false);
-  const [textValue, setTextValue] = useState("");
   const [title, setTitle] = useState("제목 정하기");
   const [text, setText] = useState(
     "자유롭게 오늘의 토픽에 대한 자신의 생각을 적어주세요"
@@ -199,12 +198,8 @@ export default function LookEssay() {
     setIsCliked(!isClicked);
   };
 
-  const onTextInput = (e) => {
-    setTextValue(e.target.value);
-    console.log(textValue);
-  };
   const handleClose = () => {
-    navigate("/");
+    navigate("/EssayRandomList");
   };
   return (
     <Main>
