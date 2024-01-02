@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../../img/barcode.svg";
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
+import Wrapper from "../../components/animation/Wrapper";
 
 // 전역 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -56,7 +57,7 @@ export default function Login() {
     }
   };
   return (
-    <>
+    <Wrapper>
       <img
         src={logo}
         style={{ marginTop: "47px", marginLeft: "129px" }}
@@ -80,6 +81,6 @@ export default function Login() {
           </p>
         </Link>
       </LoginWrap>
-    </>
+      </Wrapper>
   );
 }

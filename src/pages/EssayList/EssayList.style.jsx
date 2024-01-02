@@ -23,6 +23,7 @@ export const LikeButton=styled.div`
     text-align:center;
     font-size: 13px;
     margin: 8% 0 0 95%;
+    font-family: Pretendard;
 `;
 
 export const WriteBtn=styled.div`
@@ -33,6 +34,7 @@ margin: 10% 0 -2% 74%;
 text-align:center;
 font-size:12px;
 font-weight:bold;
+font-family: Pretendard;
 `
 
 export const EmojiCon = styled.div`
@@ -46,4 +48,12 @@ border: 1px solid #000;
 align-items: center;
 font-size:10px;
 font-weight:bold;
+font-family: Pretendard;
+`;
+
+export const ScrapImgs = styled.img`
+  margin : 0 5px -3px 7px;
+  width: 13.318px;
+  height: 15.339px;
+  
 `;

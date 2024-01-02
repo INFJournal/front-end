@@ -1,7 +1,7 @@
 import React,{useState} from "react";
-import { Essay,LikeButton,WriteBtn,EmojiCon } from "./EssayList.style";
+import { Essay,LikeButton,WriteBtn,EmojiCon,ScrapImgs } from "./EssayList.style";
 import Header from "../../components/HeaderList/EssayListHeader";
-
+import ScrapImg from "../../img/Scrap.png";
 
 export default function EssayList() {
   const data=[1,2,3,4,5]
@@ -28,7 +28,8 @@ export default function EssayList() {
           <Essay key={index}>
               <h4 style={{ fontSize: "13px", margin: "0 0 0px -30px", textAlign: "left" }}>{`"오늘의 명언 ${id}"`}</h4>
               <div style={{ position: "absolute", top: "0", right: "0",marginRight:"10px"}}>
-                <div style={{fontWeight:"bold", marginTop:"5px"}}>{`❤️${likesum[index]}🔖${scrap[index]}`} </div>
+                <div style={{ fontWeight:"bold", marginTop:"5px"}} />{`❤️${likesum[index]}`}
+                <ScrapImgs src={ScrapImg} />{`${scrap[index]}`}
             </div>
             <LikeButton onClick={() => likebtnOn(index)}>🥰</LikeButton>
             {like[index] && <EmojiBox data={data} index={index} />}
