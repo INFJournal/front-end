@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const ResiterShowWrap = styled.div`
-  margin-left: 115px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   margin-top: 103px;
   > p {
     margin-top: 20px;
@@ -13,14 +15,11 @@ const ResiterShowWrap = styled.div`
 const RegisterBtn = styled.div`
   background-color: #3e864d;
   border-radius: 90px;
-  margin-left: 43px;
+  margin-left: 155px;
   width: 80px;
   height: 80px;
   > p {
     color: white;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     padding-top: 30px;
   }
 `;
