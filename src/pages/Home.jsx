@@ -8,12 +8,12 @@ export default function Home() {
         style={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
+          height: "100vh",
         }}
       >
         <img
           src={logo}
-          style={{ margin: "100%", width: "30%", height: "30%" }}
+          style={{ margin: "70%", width: "30%", height: "30%" }}
         />
       </div>
     </body>
