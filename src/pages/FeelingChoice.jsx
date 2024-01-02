@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import Header from "../components/HeaderList/MainBackHeader";
 
 const FeelingChoiceWrap = styled.div`
   margin-left: 63px;
-  margin-top: 250px;
+  margin-top: 120px;
 `;
 
 const Greeting = styled.div`
   margin-left: -20px;
-  margin-top: 250px;
   > p {
     font-weight: bolder;
     font-size: 24px;
@@ -63,44 +63,47 @@ const NextBtn = styled.div`
 `;
 export default function FeelingChoice() {
   return (
-    <FeelingChoiceWrap>
-      <Greeting>
-        <p>
-          인프제님, <br /> 오늘의 기분은 어떠신가요?
-        </p>
-      </Greeting>
-      <Feelings>
-        <Line>
+    <>
+      <Header />
+      <FeelingChoiceWrap>
+        <Greeting>
+          <p>
+            인프제님, <br /> 오늘의 기분은 어떠신가요?
+          </p>
+        </Greeting>
+        <Feelings>
+          <Line>
+            <div>
+              <p>기분 좋음</p>
+            </div>
+            <div>
+              <p>기분</p>
+            </div>
+          </Line>
           <div>
-            <p>기분 좋음</p>
+            <div>
+              <p>즐거움</p>
+            </div>
+            <div>
+              <p>기분 좋음</p>
+            </div>
+            <div>
+              <p>기분 좋음</p>
+            </div>
           </div>
-          <div>
-            <p>기분</p>
-          </div>
-        </Line>
-        <div>
-          <div>
-            <p>즐거움</p>
-          </div>
-          <div>
-            <p>기분 좋음</p>
-          </div>
-          <div>
-            <p>기분 좋음</p>
-          </div>
-        </div>
-        <Line>
-          <div>
-            <p>기분 좋음</p>
-          </div>
-          <div>
-            <p>기분 좋음</p>
-          </div>
-        </Line>
-      </Feelings>
-      <NextBtn>
-        <button>다음으로</button>
-      </NextBtn>
-    </FeelingChoiceWrap>
+          <Line>
+            <div>
+              <p>기분 좋음</p>
+            </div>
+            <div>
+              <p>기분 좋음</p>
+            </div>
+          </Line>
+        </Feelings>
+        <NextBtn>
+          <button>다음으로</button>
+        </NextBtn>
+      </FeelingChoiceWrap>
+    </>
   );
 }
