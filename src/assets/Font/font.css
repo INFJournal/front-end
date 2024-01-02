@@ -6,6 +6,15 @@
 
       url("./Pretendard-Medium.woff") format("woff");
   }
+  @font-face {
+    font-family: "Pretendard";
+    font-weight: 600;
+    font-style: normal;
+    src:
+
+      url("./Pretendard-SemiBold.woff") format("woff");
+  }
+
 
   @font-face {
     font-family: "Pretendard";
