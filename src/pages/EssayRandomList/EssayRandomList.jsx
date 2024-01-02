@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   Essay,
   LikeButton,
@@ -14,6 +15,7 @@ import UnlikeImg from "../../img/Heart.png";
 
 export default function EssayList() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const apiEndpoint = `http://10.10.140.49:8080/api/me/inbox/essays`;
@@ -33,6 +35,10 @@ export default function EssayList() {
       });
   }, []);
 
+  const handleLookEssayBtnClick = () => {
+    navigate("/lookessay");
+  };
+
   return (
     <div>
       <Header />
@@ -44,7 +50,7 @@ export default function EssayList() {
             <LikeImgs src={essay.isLiked ? "❤️" : UnlikeImg} alt="like" />
             <ScrapImgs src={essay.isScraped ? ScrapImg : UnScrapImg} alt="Scrap" />
           </div>
-          <LikeButton>{essay.likeType}</LikeButton>
+          <LikeButton onClick={handleLookEssayBtnClick}>{essay.likeType}</LikeButton>
         </Essay>
       ))}
     </div>
