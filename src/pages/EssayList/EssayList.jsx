@@ -44,34 +44,28 @@ export default function EssayList() {
   return (
     <div>
       <Header />
-
-      {data.map(function (item, index) {
-        return (
-          <Essay key={index}>
-            <h4
-              style={{
-                fontSize: "13px",
-                margin: "0 0 0px -30px",
-                textAlign: "left",
-              }}
-            >{`"오늘의 명언 ${item.id}"`}</h4>
-            <div
-              style={{
-                position: "absolute",
-                top: "0",
-                right: "0",
-                marginRight: "10px",
-              }}
-            >
-              <div
-                style={{ fontWeight: "bold", marginTop: "5px" }}
-              >{`❤️${item.likesum}`}</div>
-              <ScrapImgs src={ScrapImg} />
-              {`${item.scrap}`}
-            </div>
-          </Essay>
-        );
-      })}
+      <Essay>
+        <h4
+          style={{
+            fontSize: "13px",
+            margin: "0 0 0px -30px",
+            textAlign: "left",
+          }}
+        >
+          예술은 과연 무엇일까
+        </h4>
+        <div
+          style={{
+            position: "absolute",
+            top: "0",
+            right: "0",
+            marginRight: "10px",
+          }}
+        >
+          <div style={{ fontWeight: "bold", marginTop: "5px" }}></div>
+          <ScrapImgs src={ScrapImg} />
+        </div>
+      </Essay>
     </div>
   );
 }
