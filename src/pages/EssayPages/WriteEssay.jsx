@@ -142,6 +142,7 @@ export default function WriteEssay() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_URL;
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     console.log("selectedFeeling:", state);
@@ -173,7 +174,7 @@ export default function WriteEssay() {
         },
         {
           headers: {
-            Authorization: 4,
+            Authorization: userId,
           },
         }
       )

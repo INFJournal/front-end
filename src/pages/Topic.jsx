@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled, { createGlobalStyle, keyframes } from "styled-components";
+import styled from "styled-components";
 import MainHeader from "../components/HeaderList/MainHeader";
 import LetterImg from "../img/Letter.png";
 import BackImg from "../img/BackImg.png";
@@ -87,17 +87,7 @@ const TodayTopicImg = styled.img`
   margin: 45px 0 0 70px;
 `;
 
-const TodayTopicName = styled.div`
-  font-size: 10px;
-  font-weight: 500;
-  margin: 0px 0 0 70px;
-`;
-
 export default function Topic() {
-  const [isTopicDone, setIsTopicDone] = useState(false);
-
-  const [isDrag, setIsDrag] = useState(false);
-  const [startX, setStartX] = useState();
   const apiUrl = process.env.REACT_APP_API_URL;
 
   //API 연동
@@ -154,9 +144,9 @@ export default function Topic() {
           <TopicBox onClick={ClickTopicButton}>
             {isWritten ? (
               <TopicText>
-                "오늘의 토픽을 이미 작성하셨네요
+                오늘의 토픽을 이미 작성하셨네요
                 <br />
-                리스트를 보러갈까요?"
+                리스트를 보러갈까요?
               </TopicText>
             ) : (
               <TopicText>{contents}</TopicText>
