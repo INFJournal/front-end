@@ -71,7 +71,7 @@ export default function FeelingChoice() {
   const onFeelingClick = (feeling) => {
     setSelectedFeeling(feeling);
     console.log(feeling);
-    console.log(state.data.topicId);
+    console.log(state.data);
   };
 
   const handleNextClick = () => {
@@ -79,7 +79,7 @@ export default function FeelingChoice() {
       navigate("/writeessay", {
         state: {
           selectedFeeling: selectedFeeling,
-          topicId: state.data.topicId,
+          data: state.data,
         },
       });
     }

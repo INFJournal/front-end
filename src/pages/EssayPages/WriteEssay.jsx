@@ -197,7 +197,7 @@ export default function WriteEssay() {
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>
         </OverlappingBox>
-        <TodayTopicTitle>"오늘의 토픽 들어갈 자리"</TodayTopicTitle>
+        <TodayTopicTitle>{state.data.contents}</TodayTopicTitle>
       </TodayTopic>
       <TopicTextBox>
         <TopicTitle
