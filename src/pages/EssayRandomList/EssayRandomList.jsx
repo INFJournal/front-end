@@ -16,14 +16,16 @@ import UnlikeImg from "../../img/Heart.png";
 export default function EssayList() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
+
 
   useEffect(() => {
-    const apiEndpoint = `http://10.10.140.49:8080/api/me/inbox/essays`;
+    const apiEndpoint = `http://3.38.178.117/swagger-ui/index.html#//api/me/inbox/essays`;
 
     axios
       .get(apiEndpoint, {
         headers: {
-          Authorization: 4
+          Authorization: userId,
         }
       })
       .then((response) => {
@@ -35,8 +37,14 @@ export default function EssayList() {
       });
   }, []);
 
-  const handleLookEssayBtnClick = () => {
-    navigate("/lookessay");
+  const handleLookEssayBtnClick = (essay) => {
+    navigate("/lookessay", {
+      state: {
+        topic: essay.topic,
+        title: essay.title,
+        content: essay.content
+      }
+    });
   };
 
   return (
@@ -50,7 +58,7 @@ export default function EssayList() {
             <LikeImgs src={essay.isLiked ? "❤️" : UnlikeImg} alt="like" />
             <ScrapImgs src={essay.isScraped ? ScrapImg : UnScrapImg} alt="Scrap" />
           </div>
-          <LikeButton onClick={handleLookEssayBtnClick}>{essay.likeType}</LikeButton>
+          <LikeButton onClick={handleLookEssayBtnClick(essay)}>{essay.likeType}</LikeButton>
         </Essay>
       ))}
     </div>

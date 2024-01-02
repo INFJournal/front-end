@@ -13,28 +13,29 @@ import LookEssay from "./pages/EssayPages/LookEssay.jsx";
 import WriteEssay from "./pages/EssayPages/WriteEssay.jsx";
 import EssayRandomList from "./pages/EssayRandomList/EssayRandomList.jsx";
 import Login from "./pages/LoginPages/Login.jsx";
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  const isLogin = localStorage.getItem("userId") !== null;
   return (
     <>
       <GlobalStyle />
       <BrowserRouter>
-      <AnimatePresence>
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/feelingchoice" element={<FeelingChoice />} />
-          <Route path="/joinshow" element={<JoinShow />} />
-          <Route path="/join" element={<Join />} />
-          <Route path="/myprofile" element={<MyProfile />} />
-          <Route path="/essayList" element={<EssayList />} />
-          <Route path="/topic" element={<Topic />} />
-          <Route path="/openessay" element={<OpenEssay />} />
-          <Route path="/lookessay" element={<LookEssay />} />
-          <Route path="/writeessay" element={<WriteEssay />} />
-          <Route path="/essayrandomlist" element={<EssayRandomList />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <AnimatePresence>
+          <Routes>
+            <Route path="/" element={isLogin ? <Topic /> : <Home />} />
+            <Route path="/feelingchoice" element={<FeelingChoice />} />
+            <Route path="/joinshow" element={<JoinShow />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/myprofile" element={<MyProfile />} />
+            <Route path="/essayList" element={<EssayList />} />
+            <Route path="/openessay" element={<OpenEssay />} />
+            <Route path="/lookessay" element={<LookEssay />} />
+            <Route path="/writeessay" element={<WriteEssay />} />
+            <Route path="/essayrandomlist" element={<EssayRandomList />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/topic" element={<Topic />} />
+          </Routes>
         </AnimatePresence>
       </BrowserRouter>
     </>
