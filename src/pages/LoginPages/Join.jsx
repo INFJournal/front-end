@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import Header from "../../components/HeaderList/JoinHeader";
 
 // 전역 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -12,7 +13,7 @@ const ResiterWrap = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 289px;
+  margin-top: 200px;
 
   > p {
     margin-top: 20px;
@@ -62,6 +63,8 @@ const StyledInput = styled.div`
     color: white;
   }
 `;
+
+const LoginHeader = styled.div``;
 export default function Join() {
   const [nickname, setNickname] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -87,21 +90,25 @@ export default function Join() {
     }
   };
   return (
-    <ResiterWrap>
-      <GlobalStyle />
-      <RegisterBtn>
-        {imageUrl ? <img src={imageUrl} alt="프로필 이미지" /> : <p>+</p>}
-        <input type="file" onChange={onFileChange} accept="image/*" />
-      </RegisterBtn>
-      <p style={{ color: "white" }}>프로필 이미지와 닉네임을 등록해주세요.</p>
-      <StyledInput>
-        <input
-          type="text"
-          value={nickname}
-          onChange={onChangeNickname}
-          onKeyDown={onEnterPress}
-        />
-      </StyledInput>
-    </ResiterWrap>
+    <>
+      <Header />
+      <ResiterWrap>
+        <GlobalStyle />
+
+        <RegisterBtn>
+          {imageUrl ? <img src={imageUrl} alt="프로필 이미지" /> : <p>+</p>}
+          <input type="file" onChange={onFileChange} accept="image/*" />
+        </RegisterBtn>
+        <p style={{ color: "white" }}>프로필 이미지와 닉네임을 등록해주세요.</p>
+        <StyledInput>
+          <input
+            type="text"
+            value={nickname}
+            onChange={onChangeNickname}
+            onKeyDown={onEnterPress}
+          />
+        </StyledInput>
+      </ResiterWrap>
+    </>
   );
 }
