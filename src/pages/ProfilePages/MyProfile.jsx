@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import profileImg from "../../img/Profile.jpg";
+import Header from "../../components/HeaderList/MainBackHeader";
 
 const MyProfileWrap = styled.div`
-  margin-top: 103px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,9 +24,12 @@ const MyProfileWrap = styled.div`
 
 export default function Myprofile() {
   return (
-    <MyProfileWrap>
-      <img src={profileImg} alt="프로필 이미지" />
-      <p>닉네임</p>
-    </MyProfileWrap>
+    <>
+      <Header />
+      <MyProfileWrap>
+        <img src={profileImg} alt="프로필 이미지" />
+        <p>닉네임</p>
+      </MyProfileWrap>
+    </>
   );
 }
