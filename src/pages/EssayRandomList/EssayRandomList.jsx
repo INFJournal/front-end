@@ -14,28 +14,28 @@ import ScrapImg from "../../img/Scrap.png";
 import UnlikeImg from "../../img/Heart.png";
 
 export default function EssayList() {
-  const [data, setData] = useState([]);
+  const data=[1,2,3,4,5]
+  //const [data, setData] = useState([]);
   const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
 
 
-  useEffect(() => {
-    const apiEndpoint = `http://3.38.178.117/swagger-ui/index.html#//api/me/inbox/essays`;
+  // useEffect(() => {
+  //   const apiEndpoint = `http://3.38.178.117/swagger-ui/index.html#//api/me/inbox/essays`;
 
-    axios
-      .get(apiEndpoint, {
-        headers: {
-          Authorization: userId,
-        }
-      })
-      .then((response) => {
-        console.log(response);
-        setData(response.data.result);
-      })
-      .catch((error) => {
-        console.error("데이터 가져오기 오류:", error);
-      });
-  }, []);
+  //   axios
+  //     .get(apiEndpoint, {
+  //       headers: {
+  //         Authorization: userId,
+  //       }
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       setData(response.data.result);
+  //     })
+  //     .catch((error) => {
+  //       console.error("데이터 가져오기 오류:", error);
+  //     });
+  // }, []);
 
   const handleLookEssayBtnClick = (essay) => {
     navigate("/lookessay", {
@@ -53,10 +53,10 @@ export default function EssayList() {
       <JbDivisionLine />
       {data.map((essay) => (
         <Essay key={essay.essayId}>
-          <h4 style={{ fontSize: "13px", margin: "-5px 0 0 -30px", textAlign: "left" }}>{`"${essay.topic} ${essay.essayId}"`}</h4>
+          <h4 style={{ fontSize: "13px", margin: "-5px 0 0 -30px", textAlign: "left" }}>topic</h4>
           <div style={{ position: "absolute", top: "0", right: "0", marginRight: "10px" }}>
-            <LikeImgs src={essay.isLiked ? "❤️" : UnlikeImg} alt="like" />
-            <ScrapImgs src={essay.isScraped ? ScrapImg : UnScrapImg} alt="Scrap" />
+            <LikeImgs src={UnlikeImg} alt="like" />
+            <ScrapImgs src={ScrapImg} alt="Scrap" />
           </div>
           <LikeButton onClick={handleLookEssayBtnClick(essay)}>{essay.likeType}</LikeButton>
         </Essay>
