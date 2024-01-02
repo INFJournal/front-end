@@ -170,10 +170,6 @@ export default function LookEssay() {
   const [selectEmoji, setSelectEmoji] = useState(Heart);
   const [isEmojiClicked, setIsEmojiClicked] = useState(false);
   const [isScrapClicked, setIsScrapClicked] = useState(false);
-  //const [title, setTitle] = useState("제목 정하기");
-  // //const [text, setText] = useState(
-  //   "자유롭게 오늘의 토픽에 대한 자신의 생각을 적어주세요"
-  // );
 
   const emojiList = ["😭", "🤬", "🫢", "🥰"];
   const navigate = useNavigate();
@@ -202,7 +198,7 @@ export default function LookEssay() {
   };
 
   const handleClose = () => {
-    navigate("/EssayRandomList");
+    //navigate("/EssayRandomList");
   };
   return (
     <Main>
