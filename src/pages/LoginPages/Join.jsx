@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "../../components/HeaderList/JoinHeader";
+import axios from "axios";
 
 // 전역 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -64,11 +65,11 @@ const StyledInput = styled.div`
   }
 `;
 
-const LoginHeader = styled.div``;
 export default function Join() {
   const [nickname, setNickname] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const onChangeNickname = (event) => {
     const Nickname = event.target.value;
@@ -80,15 +81,27 @@ export default function Join() {
     setSelectedFile(file);
     const imageUrl = URL.createObjectURL(file);
     setImageUrl(imageUrl);
-
-    console.log("업로드");
   };
 
-  const onEnterPress = (event) => {
+  const onEnterPress = async (event) => {
     if (event.key === "Enter") {
-      //닉네임, 프로필 사진 전송
+      try {
+        const response = await axios.post(`${apiUrl}/api/sign-up`, {
+          nickname: nickname,
+        });
+
+        console.log("Server response:", response.data);
+        // userId 추출
+        const userId = response.data.result.userId;
+
+        // userId를 로컬 스토리지에 저장
+        localStorage.setItem("userId", userId);
+      } catch (error) {
+        console.error("Error during API call:", error);
+      }
     }
   };
+
   return (
     <>
       <Header />

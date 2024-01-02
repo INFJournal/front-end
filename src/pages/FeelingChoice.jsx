@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/HeaderList/MainBackHeader";
+import { useNavigate } from "react-router-dom";
 
 const FeelingChoiceWrap = styled.div`
   margin-left: 63px;
   margin-top: 120px;
+  font-family: Pretendard;
 `;
 
 const Greeting = styled.div`
@@ -34,7 +36,7 @@ const Feelings = styled.div`
         text-align: center;
         font-weight: bolder;
         font-size: 12px;
-        padding: 5px;
+        padding: 7px;
       }
     }
   }
@@ -62,6 +64,20 @@ const NextBtn = styled.div`
   }
 `;
 export default function FeelingChoice() {
+  const [selectedFeeling, setSelectedFeeling] = useState("");
+  const navigate = useNavigate();
+
+  const onFeelingClick = (feeling) => {
+    setSelectedFeeling(feeling);
+    console.log(selectedFeeling);
+  };
+
+  const handleNextClick = () => {
+    if (selectedFeeling) {
+      navigate("/writeessay", { state: { selectedFeeling: selectedFeeling } });
+    }
+  };
+
   return (
     <>
       <Header />
@@ -73,36 +89,38 @@ export default function FeelingChoice() {
         </Greeting>
         <Feelings>
           <Line>
-            <div>
+            <div onClick={() => onFeelingClick("HAPPY")}>
               <p>기분 좋음</p>
             </div>
-            <div>
-              <p>기분</p>
+            <div onClick={() => onFeelingClick("SAD")}>
+              <p>슬픔</p>
             </div>
           </Line>
           <div>
-            <div>
-              <p>즐거움</p>
+            <div onClick={() => onFeelingClick("ANGRY")}>
+              <p>분노</p>
             </div>
-            <div>
-              <p>기분 좋음</p>
+            <div onClick={() => onFeelingClick("NERVOUS")}>
+              <p>긴장됨</p>
             </div>
-            <div>
-              <p>기분 좋음</p>
+            <div onClick={() => onFeelingClick("LOVE")}>
+              <p>🥰</p>
             </div>
           </div>
           <Line>
-            <div>
-              <p>기분 좋음</p>
+            <div onClick={() => onFeelingClick("BOMB")}>
+              <p>🤯</p>
             </div>
-            <div>
-              <p>기분 좋음</p>
+            <div onClick={() => onFeelingClick("SICK")}>
+              <p>🤒</p>
             </div>
           </Line>
         </Feelings>
-        <NextBtn>
-          <button>다음으로</button>
-        </NextBtn>
+        {selectedFeeling && (
+          <NextBtn onClick={handleNextClick}>
+            <button>다음으로</button>
+          </NextBtn>
+        )}
       </FeelingChoiceWrap>
     </>
   );

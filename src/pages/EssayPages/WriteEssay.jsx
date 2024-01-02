@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import MainBackHeader from "../../components/HeaderList/MainBackHeader";
+
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Main = styled.div`
   position: relative;
@@ -20,7 +22,7 @@ const TodayTopic = styled.div`
 
 const TodayTopicTitle = styled.div`
   font-weight: 700;
-  font-size: 14px;  
+  font-size: 14px;
 `;
 
 const OverlappingBox = styled.div`
@@ -134,23 +136,62 @@ const ShowCircleAfter = styled.div`
 
 export default function WriteEssay() {
   const [textValue, setTextValue] = useState("");
+  const [titleValue, setTitleValue] = useState("");
   const [showAvBtn, setShowAvBtn] = useState(false);
-
+  const { state } = useLocation();
   const navigate = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    console.log("selectedFeeling:", state);
+  });
 
   const onTextInput = (e) => {
     setTextValue(e.target.value);
-    console.log(textValue);
+    console.log(e.target.value);
+  };
+
+  const onTitleInput = (e) => {
+    setTitleValue(e.target.value);
+    console.log(e.target.value);
   };
   const handleMove = () => {
     setShowAvBtn(!showAvBtn);
   };
+
   const handleSave = () => {
-    navigate("/essaylist");
+    // 서버로 데이터를 보내고 응답을 처리합니다.
+    axios
+      .post(
+        `${apiUrl}/api/essays`,
+        {
+          mood: state.selectedFeeling,
+          topicId: 0,
+          title: titleValue,
+          contents: textValue,
+        },
+        {
+          headers: {
+            Authorization: 4,
+          },
+        }
+      )
+      .then((response) => {
+        // 서버에서의 응답을 확인하고 필요에 따라 처리합니다.
+        console.log(response.data);
+
+        // 에세이 목록 페이지로 이동합니다.
+        navigate("/essaylist");
+      })
+      .catch((error) => {
+        // 오류가 발생한 경우 처리합니다.
+        console.error("Error:", error);
+      });
   };
+
   return (
     <Main>
-    <MainBackHeader/>
+      <MainBackHeader />
       <TodayTopic>
         <OverlappingBox>
           <OverlappingText>오늘의 토픽</OverlappingText>
@@ -158,7 +199,11 @@ export default function WriteEssay() {
         <TodayTopicTitle>"오늘의 토픽 들어갈 자리"</TodayTopicTitle>
       </TodayTopic>
       <TopicTextBox>
-        <TopicTitle type="text" placeholder="제목 정하기" />
+        <TopicTitle
+          onBlur={onTitleInput}
+          type="text"
+          placeholder="제목 정하기"
+        />
         <BorderLine />
         <TopicText
           onBlur={onTextInput}
