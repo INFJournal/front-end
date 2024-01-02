@@ -16,7 +16,6 @@ export default function EssayList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // API 엔드포인트를 실제 엔드포인트로 교체
     const apiEndpoint = `http://10.10.140.49:8080/api/me/inbox/essays`;
 
     axios
@@ -28,8 +27,6 @@ export default function EssayList() {
       .then((response) => {
         console.log(response);
         setData(response.data.result);
-        // const count = response.data.result.length
-        // console.log(count);
       })
       .catch((error) => {
         console.error("데이터 가져오기 오류:", error);

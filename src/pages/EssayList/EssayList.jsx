@@ -17,10 +17,8 @@ export default function EssayList() {
   };
 
   useEffect(() => {
-    // 사용자 ID를 어떻게 가져올지에 따라 수정이 필요합니다.
     const userId = "your_user_id";
 
-    // API 엔드포인트를 실제 엔드포인트로 교체
     const apiEndpoint = `http://10.10.140.49:8080/api/me/essays`;
 
     axios
@@ -38,12 +36,11 @@ export default function EssayList() {
       });
   }, []);
 
+
+
   return (
     <div>
       <Header />
-      <WriteBtn onClick={() => (window.location.href = "+ 새 글 쓰기")}>
-        + 새 글 쓰기
-      </WriteBtn>
 
       {data.map(function (item, index) {
         return (
@@ -53,22 +50,11 @@ export default function EssayList() {
               <div style={{ fontWeight: "bold", marginTop: "5px" }}>{`❤️${item.likesum}`}</div>
               <ScrapImgs src={ScrapImg} />{`${item.scrap}`}
             </div>
-            <LikeButton onClick={() => likeBtnOn(index)}>🥰</LikeButton>
-            {like[index] && <EmojiBox item={item} />}
+
           </Essay>
         );
       })}
     </div>
-  );
-}
-
-function EmojiBox({ item }) {
-    // let [sad]=useState(Array(data.length).fill(0));
-    // let [angry]=useState(Array(data.length).fill(0));
-    // let [shocked]=useState(Array(data.length).fill(0));
-    // let [heart]=useState(Array(data.length).fill(0));
-  return (
-    <EmojiCon>{`😭${item.sad}🤬${item.angry}🫢${item.shocked}🥰${item.heart}`}</EmojiCon>
   );
 }
 

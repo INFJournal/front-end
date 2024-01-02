@@ -26,16 +26,6 @@ export const LikeButton=styled.div`
     font-family: Pretendard;
 `;
 
-export const WriteBtn=styled.div`
-width: 70px;
-height: 20px;
-border-radius: 20px;
-margin: 10% 0 -2% 74%;
-text-align:center;
-font-size:12px;
-font-weight:bold;
-font-family: Pretendard;
-`
 
 export const EmojiCon = styled.div`
 background-color:rgba(255,255,255,1);

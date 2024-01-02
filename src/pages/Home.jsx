@@ -7,11 +7,8 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // 3초 뒤에 Login 페이지로 이동
       navigate("login");
     }, 3000);
-
-    // 컴포넌트가 언마운트되면 타이머 클리어
     return () => clearTimeout(timer);
   }, [navigate]);
 
