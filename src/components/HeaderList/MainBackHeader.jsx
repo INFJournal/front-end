@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../img/barcode.svg";
+import logo from "../../img/INFJournal.png";
 import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
+import profileImg from "../../img/Profile.jpg";
 
-const JoinHeaderWrap = styled.div`
+const MainBackHeaderWrap = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -25,7 +26,20 @@ const Logo = styled.div`
   margin-top: 74px;
 `;
 
-export default function JoinHeader() {
+const Profile = styled.div`
+  position: absolute;
+  top: 83px;
+  right: 38px;
+  height: 16px;
+  weight: 8px;
+  > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+`;
+
+export default function MainBackHeader() {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -33,10 +47,10 @@ export default function JoinHeader() {
     navigate(-1);
   };
   return (
-    <JoinHeaderWrap>
+    <MainBackHeaderWrap>
       <Back onClick={handleGoBack}>
         <span>
-          <IoIosArrowBack size="23" color="white" />
+          <IoIosArrowBack size="23" color="black" />
         </span>
       </Back>
       <Logo>
@@ -48,6 +62,9 @@ export default function JoinHeader() {
           />
         </Link>
       </Logo>
-    </JoinHeaderWrap>
+      <Profile>
+        <img src={profileImg} alt="프로필 이미지" />
+      </Profile>
+    </MainBackHeaderWrap>
   );
 }
