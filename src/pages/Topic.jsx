@@ -1,16 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import MainHeader from "../components/HeaderList/MainHeader";
 import LetterImg from "../img/Letter.png";
 import BackImg from "../img/BackImg.png";
 import HumanImg from "../img/TopicImg.png";
 import axios from 'axios';
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`;
 const Main = styled.div`
   margin: 113px 0 0 42px;
   color: #000;
   font-family: Pretendard;
+  overflow: hidden;
 `;
 const MainTopic = styled.div`
   margin-bottom: 20px;
@@ -68,10 +74,9 @@ const TodayTopicBoxes = styled.div`
   position: absolute;
   display: flex;
   top: 700px;
-  left: 42px;
+  left: 80px;
   flex-direction: row;
   overflow-x: scroll; // 가로 스크롤을 숨김
-  animation: ${slideAnimation} 1s ease; // 1초 동안 slideAnimation 적용
 `;
 const TodayTopicBox = styled.div`
   width: 130px;
@@ -79,7 +84,7 @@ const TodayTopicBox = styled.div`
   border-radius: 15px;
   border: 3px solid #d5e4d8;
   background-color: #fff;
-  margin: 0 0 0 6px;
+  margin: 0 0 0 10px;
 `;
 
 const TodayTopicTitle = styled.div`
@@ -104,9 +109,6 @@ const TodayTopicName = styled.div`
 
 export default function Topic() {
   const [isTopicDone, setIsTopicDone] = useState(false);
-  const [isDrag, setIsDrag] = useState(false);
-  const [startX, setStartX] = useState();
-  const scrollRef = useRef(null);
 
   //API 연동
   const [data, setData] = useState(null);
@@ -131,38 +133,6 @@ export default function Topic() {
       });
   }, []);
 
-
-  const onDragStart = (e) => {
-    e.preventDefault();
-    setIsDrag(true);
-    setStartX(e.pageX + scrollRef.current.scrollLeft);
-  };
-
-  const onDragEnd = () => {
-    setIsDrag(false);
-  };
-
-  const onDragMove = (e) => {
-    if (isDrag) {
-     scrollRef.current.scrollLeft = startX - e.pageX;
-    }
-  };
-  const throttle = (func, ms) => {
-    let throttled = false;
-    return (...args) => {
-      if (!throttled) {
-        throttled = true;
-        setTimeout(() => {
-          func(...args);
-          throttled = false;
-        }, ms);
-      }
-    };
-  };
-  const delay = 100;
-  const onThrottleDragMove = throttle(onDragMove, delay);
-
-
   const navigate = useNavigate();
   const ClickTopicButton = () => {
     if (isTopicDone) {
@@ -181,7 +151,6 @@ export default function Topic() {
   const todayTopicData = [
     { title: dataContents, image: HumanImg, author: "Xingu" },
     { title: dataContents, image: HumanImg, author: "Jenn" },
-    { title: dataContents, image: HumanImg, author: "ioeemg" },
   ];
   
   return (
@@ -215,13 +184,7 @@ export default function Topic() {
       <UnderBox>
         <img src={BackImg} alt="BackImg" />
         <UnderText>최근 동록된 우체통</UnderText>
-        <TodayTopicBoxes
-      onMouseDown={onDragStart}
-      onMouseMove={onThrottleDragMove}
-      onMouseUp={onDragEnd}
-      onMouseLeave={onDragEnd}
-      ref={scrollRef}
-        >
+        <TodayTopicBoxes>
           {todayTopicData.map((topic, index) => (
             <TodayTopicBox onClick={handleTopicBox} key={index}>
               <TodayTopicTitle>{topic.title}</TodayTopicTitle>
