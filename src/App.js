@@ -6,6 +6,9 @@ import GlobalStyle from "./components/Global.style.jsx";
 import Home from "./pages/Home";
 import FeelingChoice from "./pages/FeelingChoice";
 
+import RegisterShow from "./components/RegisterShow.jsx";
+import Register from "./components/RegisterImgNickname.jsx";
+
 function App() {
   return (
     <>
@@ -14,6 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/feelingchoice" element={<FeelingChoice />} />
+          <Route path="/registershow" element={<RegisterShow />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </>
