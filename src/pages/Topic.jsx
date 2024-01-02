@@ -8,7 +8,7 @@ import HumanImg from "../img/TopicImg.png";
 import axios from "axios";
 
 const Main = styled.div`
-  margin: 113px 0 0 42px;
+  margin: 61px 0 0 42px;
   color: #000;
   font-family: Pretendard;
   overflow: hidden;
@@ -46,7 +46,7 @@ const TopicImg = styled.img`
 `;
 
 const UnderBox = styled.div`
-  margin: 38px 0 0 0;
+  margin: 15px 0 0 0;
   font-family: Pretendard;
 `;
 
@@ -54,15 +54,15 @@ const UnderText = styled.div`
   position: absolute;
   font-size: 16px;
   font-weight: 800;
-  top: 655px;
+  top: 580px;
   left: 48px;
 `;
 
 const TodayTopicBoxes = styled.div`
   position: absolute;
   display: flex;
-  top: 700px;
-  left: 20px;
+  top: 630px;
+  left: 80px;
   flex-direction: row;
   overflow-x: scroll; // 가로 스크롤을 숨김
 `;
@@ -77,14 +77,14 @@ const TodayTopicBox = styled.div`
 
 const TodayTopicTitle = styled.div`
   position: relative;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   margin: 38px 0 0 13px;
 `;
 const TodayTopicImg = styled.img`
   width: 49.691px;
   height: 58.83px;
-  margin: 15px 0 0 70px;
+  margin: 45px 0 0 70px;
 `;
 
 const TodayTopicName = styled.div`

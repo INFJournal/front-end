@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "../../components/HeaderList/JoinHeader";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 // 전역 스타일 정의
 const GlobalStyle = createGlobalStyle`
@@ -70,6 +71,7 @@ export default function Join() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const apiUrl = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
 
   const onChangeNickname = (event) => {
     const Nickname = event.target.value;
@@ -96,6 +98,9 @@ export default function Join() {
 
         // userId를 로컬 스토리지에 저장
         localStorage.setItem("userId", userId);
+
+        // 로그인 성공 후 페이지 이동
+        navigate("/topic");
       } catch (error) {
         console.error("Error during API call:", error);
       }
