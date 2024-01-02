@@ -18,7 +18,7 @@ export default function EssayList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const apiEndpoint = `http://10.10.140.49:8080/api/me/inbox/essays`;
+    const apiEndpoint = `http://43.201.150.67/swagger-ui/index.html#//api/me/inbox/essays`;
 
     axios
       .get(apiEndpoint, {
