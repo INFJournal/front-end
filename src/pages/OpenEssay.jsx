@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import imageBook from './pics/book.png';
+import { useNavigate } from "react-router-dom";
 
 const Main = styled.div`
   margin: 211px 0 0 42px;
@@ -26,7 +27,14 @@ const OpenButton = styled.button`
     margin : 40px 0 0 35px;
 `
 
+
 export default function OpenEssay() {
+  const navigate = useNavigate();
+  
+  const handleClick=()=>{
+    navigate("/LookEssay")
+  }
+
   return (
     <div>    
         <Main>
@@ -34,7 +42,7 @@ export default function OpenEssay() {
             오늘의 에세이를 열어보세요.
         </Main>
         <BookImg src={imageBook}/>
-        <OpenButton>열어보기</OpenButton>
+        <OpenButton onClick={handleClick}>열어보기</OpenButton>
     </div>
   );
 }
