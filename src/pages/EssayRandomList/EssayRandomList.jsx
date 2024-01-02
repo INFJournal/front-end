@@ -14,28 +14,28 @@ import ScrapImg from "../../img/Scrap.png";
 import UnlikeImg from "../../img/Heart.png";
 
 export default function EssayList() {
-  const data=[1,2,3,4,5]
-  //const [data, setData] = useState([]);
+  //const data=[1,2,3,4,5]
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
 
 
-  // useEffect(() => {
-  //   const apiEndpoint = `http://3.38.178.117/swagger-ui/index.html#//api/me/inbox/essays`;
+  useEffect(() => {
+    const apiEndpoint = `http://3.38.178.117/api/me/inbox/essays`;
 
-  //   axios
-  //     .get(apiEndpoint, {
-  //       headers: {
-  //         Authorization: userId,
-  //       }
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //       setData(response.data.result);
-  //     })
-  //     .catch((error) => {
-  //       console.error("데이터 가져오기 오류:", error);
-  //     });
-  // }, []);
+    axios
+      .get(apiEndpoint, {
+        headers: {
+          Authorization: userId,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        setData(response.data.result);
+      })
+      .catch((error) => {
+        console.error("데이터 가져오기 오류:", error);
+      });
+  }, []);
 
   const handleLookEssayBtnClick = (essay) => {
     navigate("/lookessay", {
@@ -58,7 +58,7 @@ export default function EssayList() {
             <LikeImgs src={UnlikeImg} alt="like" />
             <ScrapImgs src={ScrapImg} alt="Scrap" />
           </div>
-          <LikeButton onClick={handleLookEssayBtnClick(essay)}>{essay.likeType}</LikeButton>
+          <LikeButton onClick={() => handleLookEssayBtnClick(essay)}>{essay.likeType}</LikeButton>
         </Essay>
       ))}
     </div>
