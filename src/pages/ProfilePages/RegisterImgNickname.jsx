@@ -49,8 +49,19 @@ export default function RegisterImgNickname() {
 
   const onEnterPress = (event) => {
     if (event.key === "Enter") {
-      // Enter 키를 누르면 API 통신되게 코드 구현
-      //localStorage.setItem("nickname", nickname);
+      // try {
+      //   // API 통신
+      //   const response = await axios.post("YOUR_API_ENDPOINT",
+      //     { nickname: nickname }
+      //   );
+      //   // 서버에서 받은 id를 로컬 스토리지에 저장
+      //   const userId = response.data.id;
+      //   localStorage.setItem("userId", userId);
+      //   console.log("Nickname sent to the server:", nickname);
+      //   console.log("Received userId from the server:", userId);
+      // } catch (error) {
+      //   console.error("Error during API call:", error);
+      // }
     }
   };
   return (
@@ -65,7 +76,7 @@ export default function RegisterImgNickname() {
           placeholder="닉네임 입력"
           value={nickname}
           onChange={onChangeNickname}
-          onkeydown={onEnterPress}
+          onKeyDown={onEnterPress}
         />
       </StyledInput>
     </ResiterWrap>
