@@ -4,14 +4,16 @@ import "./App.css";
 import Home from "./pages/Home";
 import Topic from "./pages/Topic";
 import OpenEssay from "./pages/OpenEssay";
+import LookEssay from "./pages/LookEssay";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/Topic" element={<Topic />} />
           <Route path="/OpenEssay" element={<OpenEssay />} />
+          <Route path ="/LookEssay" element={<LookEssay/>}/>
         </Routes>
       </BrowserRouter>
     </>
