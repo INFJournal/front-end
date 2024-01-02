@@ -21,7 +21,7 @@ export default function EssayList() {
 
   useEffect(() => {
     const apiEndpoint = `http://3.38.178.117/api/me/inbox/essays`;
-
+    console.log(userId);
     axios
       .get(apiEndpoint, {
         headers: {

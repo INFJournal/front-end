@@ -167,7 +167,7 @@ export default function WriteEssay() {
         `${apiUrl}/api/essays`,
         {
           mood: state.selectedFeeling,
-          topicId: state.topicId,
+          topicId: state.data.topicId,
           title: titleValue,
           contents: textValue,
         },
