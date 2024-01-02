@@ -110,6 +110,7 @@ export default function Topic() {
 
   //API 연동
   const [data, setData] = useState(null);
+  const [dataContents, setDataContents] = useState();
 
   useEffect(() => {
     // API 엔드포인트를 실제 엔드포인트로 교체
@@ -124,6 +125,8 @@ export default function Topic() {
         console.log(response);
         setData(response.data.result);
         setIsTopicDone(response.data.result.isWritten);
+        setDataContents(response.data.result.contents);
+
       })
       .catch((error) => {
         console.error("데이터 가져오기 오류:", error);
@@ -176,9 +179,9 @@ export default function Topic() {
     navigate("/essayrandomlist");
   };
   const todayTopicData = [
-    { title: "dd", image: HumanImg, author: "ioeemg" },
-    { title: "그날의 명언 들어갈 자리2", image: HumanImg, author: "ioeemg" },
-    { title: "그날의 명언 들어갈 자리3", image: HumanImg, author: "ioeemg" },
+    { title: dataContents, image: HumanImg, author: "Xingu" },
+    { title: dataContents, image: HumanImg, author: "Jenn" },
+    { title: dataContents, image: HumanImg, author: "ioeemg" },
   ];
 
   return (
